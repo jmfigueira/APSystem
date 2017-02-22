@@ -33,47 +33,50 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EntityDeploy Include="APSystem.edmx">
+    <EntityDeploy Include="APSystemEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>APSystem.Designer.cs</LastGenOutput>
+      <LastGenOutput>APSystemEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="APSystem.Context.tt">
+    <None Include="APSystemEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>APSystem.edmx</DependentUpon>
-      <LastGenOutput>APSystem.Context.cs</LastGenOutput>
+      <DependentUpon>APSystemEntities.edmx</DependentUpon>
+      <LastGenOutput>APSystemEntities.Context.cs</LastGenOutput>
     </None>
-    <None Include="APSystem.edmx.diagram">
-      <DependentUpon>APSystem.edmx</DependentUpon>
+    <None Include="APSystemEntities.edmx.diagram">
+      <DependentUpon>APSystemEntities.edmx</DependentUpon>
     </None>
-    <None Include="APSystem.tt">
+    <None Include="APSystemEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>APSystem.edmx</DependentUpon>
-      <LastGenOutput>APSystem.cs</LastGenOutput>
+      <DependentUpon>APSystemEntities.edmx</DependentUpon>
+      <LastGenOutput>APSystemEntities.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="APSystem.Context.cs">
+    <Compile Include="APSystemEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>APSystem.Context.tt</DependentUpon>
+      <DependentUpon>APSystemEntities.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="APSystem.cs">
+    <Compile Include="APSystemEntities.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>APSystem.tt</DependentUpon>
+      <DependentUpon>APSystemEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="APSystem.Designer.cs">
+    <Compile Include="APSystemEntities.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>APSystem.edmx</DependentUpon>
+      <DependentUpon>APSystemEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Log.cs">
+      <DependentUpon>APSystemEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Passage.cs">
-      <DependentUpon>APSystem.tt</DependentUpon>
+      <DependentUpon>APSystemEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="PassageDAL.cs" />
     <Compile Include="User.cs">
-      <DependentUpon>APSystem.tt</DependentUpon>
+      <DependentUpon>APSystemEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="UserDAL.cs" />
   </ItemGroup>
@@ -89,6 +92,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml" />

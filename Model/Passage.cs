@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Model
 {
     public class Passage
     {
+        #region .: Enums :.
         /// <summary>
         /// Tipo da passagem, GO - Ida | CB - Volta
         /// </summary>
@@ -16,12 +13,20 @@ namespace Model
             GO = 1,
             CB = 2
         }
+        #endregion
 
+        #region .: Constructors :.
+        /// <summary>
+        /// Construtor da passagem que já define seu tipo
+        /// </summary>
+        /// <param name="type"></param>
         public Passage(Passage.TypeSelect type)
         {
             Type = type.ToString();
         }
+        #endregion
 
+        #region .: Attributes :.
         public string Type { get; set; }
         public int Id { get; set; }
         public int IdUser { get; set; }
@@ -36,5 +41,6 @@ namespace Model
         /// Data de chegada
         /// </summary>
         public DateTime ArrivalDate { get; set; }
+        #endregion
     }
 }

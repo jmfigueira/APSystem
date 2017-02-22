@@ -20,3 +20,15 @@ CREATE TABLE [Passage]
 	[DepartureDate] DATETIME NOT NULL,
 	[ArrivalDate] DATETIME NOT NULL
 )
+
+CREATE TABLE [Logs]
+(
+	[Id] INT PRIMARY KEY IDENTITY,
+	[Message] VARCHAR(255) NOT NULL,
+	[Details] VARCHAR(255),
+	[Date] DATETIME NOT NULL
+)
+
+INSERT INTO [User] ([Login], [CPF], [Password], [RG]) VALUES ('admin', '46437803800', 'admin', '35055150')
+
+INSERT INTO [Passage] ([IdUser], [Number], [Type], [ArrivalDate], [DepartureDate]) VALUES (1, '2017020220900000', 'GO', GETDATE(), GETDATE()) 

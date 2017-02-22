@@ -12,19 +12,11 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class Log
     {
-        public User()
-        {
-            this.Passages = new HashSet<Passage>();
-        }
-    
         public int Id { get; set; }
-        public string Login { get; set; }
-        public string Password { get; set; }
-        public string CPF { get; set; }
-        public string RG { get; set; }
-    
-        public virtual ICollection<Passage> Passages { get; set; }
+        public string Message { get; set; }
+        public string Details { get; set; }
+        public System.DateTime Date { get; set; }
     }
 }
