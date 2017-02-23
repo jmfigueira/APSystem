@@ -18,19 +18,26 @@ namespace BL
 
         public PassageService(DAL.PassageDAL context)
         {
-            _passageDAL = context;  
+            _passageDAL = context;
         }
 
-        public Passage Select(string condition, int value)
+        public List<Passage> Select(string condition, string value)
         {
-            string query = string.Format("WHERE [{0}] = {1}", condition, value);
+            try
+            {
+                if (!String.IsNullOrEmpty(condition) || !String.IsNullOrEmpty(value))
+                {
+                    string query = string.Format("WHERE [{0}] = {1}", condition, value);
 
-            return _passageDAL.SelectByCondition(query);
-        }
+                    return _passageDAL.SelectByCondition(query);
+                }
 
-        public List<Passage> Select()
-        {
-            return _passageDAL.SelectAll();
+                return _passageDAL.SelectAll();
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 }

@@ -24,6 +24,15 @@ namespace Model
         {
             Type = type.ToString();
         }
+
+        /// <summary>
+        /// Construtor sem definição do Type
+        /// </summary>
+        /// <param name="type"></param>
+        public Passage()
+        {
+
+        }
         #endregion
 
         #region .: Attributes :.

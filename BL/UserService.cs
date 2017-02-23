@@ -26,7 +26,7 @@ namespace BL
         {
             try
             {
-                User user = Select("Login", login);
+                User user = Select("Login", login).First();
 
                 if (user == null)
                 {
@@ -43,7 +43,6 @@ namespace BL
             }
             catch
             {
-                //TODO: Tratar as possível exceções
                 return false;
             }
         }
@@ -53,27 +52,32 @@ namespace BL
         {
             try
             {
-                User user = Select("Login", login);
+                User user = Select("Login", login).First();
 
                 return _userDAL.Remove(user);
             }
             catch
             {
-                //TODO: Tratar as possível exceções
                 return false;
             }
         }
 
-        public User Select(string condition, string value)
+        public List<User> Select(string condition, string value)
         {
-            string query = string.Format("WHERE [{0}] = {1}", condition, value);
+            try
+            {
+                if (!String.IsNullOrEmpty(condition) || !String.IsNullOrEmpty(value))
+                {
+                    string query = string.Format("SELECT * FROM dbo.[User] WHERE [{0}] = '{1}'", condition, value);
 
-            return _userDAL.SelectByCondition(query).First();
-        }
-
-        public List<User> Select()
-        {
-            return _userDAL.SelectAll();
+                    return _userDAL.SelectByCondition(query);
+                }
+                return _userDAL.SelectAll();
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 }

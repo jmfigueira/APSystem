@@ -4,22 +4,13 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="APSystemModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="APSystemModelStoreContainer">
-          <EntitySet Name="Logs" EntityType="APSystemModel.Store.Logs" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Passage" EntityType="APSystemModel.Store.Passage" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="User" EntityType="APSystemModel.Store.User" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK__Passage__IdUser__1273C1CD" Association="APSystemModel.Store.FK__Passage__IdUser__1273C1CD">
-            <End Role="User" EntitySet="User" />
-            <End Role="Passage" EntitySet="Passage" />
-          </AssociationSet>
-        </EntityContainer>
+      <Schema Namespace="APSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Logs">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Message" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Message" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="Details" Type="varchar" MaxLength="255" />
           <Property Name="Date" Type="datetime" Nullable="false" />
         </EntityType>
@@ -27,10 +18,10 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdUser" Type="int" />
-          <Property Name="Type" Type="varchar" Nullable="false" MaxLength="2" />
-          <Property Name="Number" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="Type" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="Number" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="DepartureDate" Type="datetime" Nullable="false" />
           <Property Name="ArrivalDate" Type="datetime" Nullable="false" />
         </EntityType>
@@ -38,15 +29,15 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Login" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="Password" Type="varchar" Nullable="false" MaxLength="255" />
-          <Property Name="CPF" Type="varchar" Nullable="false" MaxLength="11" />
-          <Property Name="RG" Type="varchar" Nullable="false" MaxLength="11" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CPF" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="RG" Type="varchar" MaxLength="11" Nullable="false" />
         </EntityType>
         <Association Name="FK__Passage__IdUser__1273C1CD">
-          <End Role="User" Type="APSystemModel.Store.User" Multiplicity="0..1" />
-          <End Role="Passage" Type="APSystemModel.Store.Passage" Multiplicity="*" />
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Passage" Type="Self.Passage" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="Id" />
@@ -56,55 +47,55 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityContainer Name="APSystemModelStoreContainer">
+          <EntitySet Name="Logs" EntityType="Self.Logs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Passage" EntityType="Self.Passage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Passage__IdUser__1273C1CD" Association="Self.FK__Passage__IdUser__1273C1CD">
+            <End Role="User" EntitySet="User" />
+            <End Role="Passage" EntitySet="Passage" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="APSystemModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="APSystemEntities" p1:LazyLoadingEnabled="true">
-          <EntitySet Name="Logs" EntityType="APSystemModel.Log" />
-          <EntitySet Name="Passages" EntityType="APSystemModel.Passage" />
-          <EntitySet Name="Users" EntityType="APSystemModel.User" />
-          <AssociationSet Name="FK__Passage__IdUser__1273C1CD" Association="APSystemModel.FK__Passage__IdUser__1273C1CD">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Passage" EntitySet="Passages" />
-          </AssociationSet>
-        </EntityContainer>
+      <Schema Namespace="APSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Log">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Message" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="Details" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Message" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Details" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="Passage">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdUser" Type="Int32" />
-          <Property Name="Type" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="false" />
-          <Property Name="Number" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Type" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Number" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DepartureDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ArrivalDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="User" Relationship="APSystemModel.FK__Passage__IdUser__1273C1CD" FromRole="Passage" ToRole="User" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Passage__IdUser__1273C1CD" FromRole="Passage" ToRole="User" />
         </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Login" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="CPF" Type="String" Nullable="false" MaxLength="11" Unicode="false" FixedLength="false" />
-          <Property Name="RG" Type="String" Nullable="false" MaxLength="11" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="Passages" Relationship="APSystemModel.FK__Passage__IdUser__1273C1CD" FromRole="User" ToRole="Passage" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CPF" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RG" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Passages" Relationship="Self.FK__Passage__IdUser__1273C1CD" FromRole="User" ToRole="Passage" />
         </EntityType>
         <Association Name="FK__Passage__IdUser__1273C1CD">
-          <End Role="User" Type="APSystemModel.User" Multiplicity="0..1" />
-          <End Role="Passage" Type="APSystemModel.Passage" Multiplicity="*" />
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Passage" Type="Self.Passage" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="Id" />
@@ -114,6 +105,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityContainer Name="APSystemEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Logs" EntityType="Self.Log" />
+          <EntitySet Name="Passages" EntityType="Self.Passage" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK__Passage__IdUser__1273C1CD" Association="Self.FK__Passage__IdUser__1273C1CD">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Passage" EntitySet="Passages" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -167,8 +167,9 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="False" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
