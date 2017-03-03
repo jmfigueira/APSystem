@@ -31,7 +31,6 @@ namespace DAL
         #endregion
 
         #region .: Public Methods :.
-        //TODO: testar
         /// <summary>
         /// Método para atualizar um usuário
         /// </summary>
@@ -68,7 +67,6 @@ namespace DAL
             }
         }
 
-        //TODO: testar
         /// <summary>
         /// Método para inserir um usuário no banco
         /// </summary>
@@ -107,7 +105,6 @@ namespace DAL
             }
         }
 
-        //TODO: testar
         /// <summary>
         /// Método para remover um usuário
         /// </summary>
@@ -117,9 +114,11 @@ namespace DAL
         {
             try
             {
-                User u = _context.Users.Find(value.Login);
+                string query = string.Format("SELECT * FROM dbo.[User] WHERE [{0}] = '{1}'", "Login", value.Login);
 
-                _context.Users.Remove(u);
+                var user = _context.Users.SqlQuery(query).FirstOrDefaultAsync();
+
+                _context.Users.Remove(user.Result);
                 _context.SaveChanges();
 
                 return true;
@@ -140,7 +139,6 @@ namespace DAL
             }
         }
 
-        //TODO: testar
         /// <summary>
         /// Método para trazer todos os usuários do banco
         /// </summary>
@@ -183,7 +181,6 @@ namespace DAL
             }
         }
 
-        //TODO: testar
         /// <summary>
         /// Método para fazer um select nos usuário segundo uma condição
         /// </summary>

@@ -1,24 +1,29 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Model;
 
 namespace BL
 {
-    public class UserService :  IService<User>
+    public class UserService : IService<User>
     {
         #region .: Attributes :.
         private readonly DAL.UserDAL _userDAL;
         #endregion
 
         #region .: Constructors :.
+        /// <summary>
+        /// Construtor padrão
+        /// </summary>
         public UserService()
         {
             _userDAL = new DAL.UserDAL();
         }
 
+        /// <summary>
+        /// Construtor que utiliza um contexto já existente
+        /// </summary>
+        /// <param name="context"></param>
         public UserService(DAL.UserDAL context)
         {
             _userDAL = context;
@@ -26,7 +31,12 @@ namespace BL
         #endregion
 
         #region .: Public Methods :.
-        //TODO: Testar esse método
+
+        /// <summary>
+        /// Cria um usuário
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public bool Create(User value)
         {
             try
@@ -53,7 +63,11 @@ namespace BL
             }
         }
 
-        //TODO: Testar esse método
+        /// <summary>
+        /// Remove um usuário conforme seu Login
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns></returns>
         public bool Remove(string login)
         {
             try
@@ -68,6 +82,12 @@ namespace BL
             }
         }
 
+        /// <summary>
+        /// Buscar dados no banco, com ou sem uma condição
+        /// </summary>
+        /// <param name="condition"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public List<User> Select(string condition, string value)
         {
             try
@@ -86,6 +106,11 @@ namespace BL
             }
         }
 
+        /// <summary>
+        /// Atualiza um usuário no banco
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         public bool Update(User user)
         {
             try

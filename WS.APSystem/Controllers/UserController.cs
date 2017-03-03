@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using BL;
+﻿using BL;
 using Model;
-using System.Xml;
-using System.Web.Helpers;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Web.Http;
 
 namespace WS.APSystem.Controllers
 {
@@ -22,14 +17,14 @@ namespace WS.APSystem.Controllers
             return _context.Select(string.Empty, string.Empty);
         }
 
-        [HttpGet]
+        //[HttpGet]
         public List<User> GetByCondition(string condition, string value)
         {
             return _context.Select(condition, value);
         }
 
-        [HttpPost]
-        public bool PostInsert([FromBody]Object value)
+        //[HttpPost]
+        public bool Insert([FromBody]Object value)
         {
             string json = JsonConvert.SerializeObject(value);
             User user = JsonConvert.DeserializeObject<User>(json);
@@ -37,13 +32,13 @@ namespace WS.APSystem.Controllers
             return _context.Create(user);
         }
 
-        [HttpDelete]
+        //[HttpDelete]
         public bool Delete(string login)
         {
             return _context.Remove(login);
         }
 
-        [HttpPost]
+        //[HttpPost]
         public bool Update([FromBody]Object value)
         {
             string json = JsonConvert.SerializeObject(value);

@@ -1,9 +1,7 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Model;
 
 namespace BL
 {
@@ -14,11 +12,18 @@ namespace BL
         #endregion
 
         #region .: Constructors :.
+        /// <summary>
+        /// Construtor padrão
+        /// </summary>
         public PassageService()
         {
             _passageDAL = new DAL.PassageDAL();
         }
 
+        /// <summary>
+        /// Construtor que utiliza um contexto já existente
+        /// </summary>
+        /// <param name="context"></param>
         public PassageService(DAL.PassageDAL context)
         {
             _passageDAL = context;
@@ -26,6 +31,13 @@ namespace BL
         #endregion
 
         #region .: Public Methods :.
+
+        /// <summary>
+        /// Buscar dados no banco, com ou sem uma condição
+        /// </summary>
+        /// <param name="condition"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public List<Passage> Select(string condition, string value)
         {
             try
@@ -45,6 +57,11 @@ namespace BL
             }
         }
 
+        /// <summary>
+        /// Cria uma nova passagem
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public bool Create(Passage value)
         {
             try
@@ -72,7 +89,11 @@ namespace BL
         }
 
 
-        //TODO: Testar esse método
+        /// <summary>
+        /// Remove uma passagem pelo seu Number
+        /// </summary>
+        /// <param name="number"></param>
+        /// <returns></returns>
         public bool Remove(string number)
         {
             try
@@ -87,6 +108,11 @@ namespace BL
             }
         }
 
+        /// <summary>
+        /// Atualiza as informações de uma passagem
+        /// </summary>
+        /// <param name="passage"></param>
+        /// <returns></returns>
         public bool Update(Passage passage)
         {
             try

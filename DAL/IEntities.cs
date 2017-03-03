@@ -3,6 +3,10 @@ using System.Collections.Generic;
 
 namespace DAL
 {
+    /// <summary>
+    /// Interface para representar as Entidades
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     interface IEntities<T> : IEnumerable<T>
     {
         Boolean Insert(T value);
