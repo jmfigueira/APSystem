@@ -67,7 +67,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>APSystemEntities.edmx</DependentUpon>
     </Compile>
-    <Compile Include="IRepresentable.cs" />
+    <Compile Include="IEntities.cs" />
     <Compile Include="Log.cs">
       <DependentUpon>APSystemEntities.tt</DependentUpon>
     </Compile>

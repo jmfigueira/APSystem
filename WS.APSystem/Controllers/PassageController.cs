@@ -1,29 +1,26 @@
-﻿using System;
+﻿using BL;
+using Model;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
+using System.Web;
 using System.Web.Http;
-using BL;
-using Model;
-using System.Xml;
-using System.Web.Helpers;
-using Newtonsoft.Json;
 
 namespace WS.APSystem.Controllers
 {
-    public class UserController : ApiController
+    public class PassageController : ApiController
     {
-        private UserService _context = new UserService();
-        
+        private PassageService _context = new PassageService();
+
         [HttpGet]
-        public List<User> GetAll()
+        public List<Passage> GetAll()
         {
             return _context.Select(string.Empty, string.Empty);
         }
 
         [HttpGet]
-        public List<User> GetByCondition(string condition, string value)
+        public List<Passage> GetByCondition(string condition, string value)
         {
             return _context.Select(condition, value);
         }
@@ -32,24 +29,24 @@ namespace WS.APSystem.Controllers
         public bool PostInsert([FromBody]Object value)
         {
             string json = JsonConvert.SerializeObject(value);
-            User user = JsonConvert.DeserializeObject<User>(json);
+            Passage passage = JsonConvert.DeserializeObject<Passage>(json);
 
-            return _context.Create(user);
+            return _context.Create(passage);
         }
 
         [HttpDelete]
-        public bool Delete(string login)
+        public bool Delete(string number)
         {
-            return _context.Remove(login);
+            return _context.Remove(number);
         }
 
         [HttpPost]
         public bool Update([FromBody]Object value)
         {
             string json = JsonConvert.SerializeObject(value);
-            User user = JsonConvert.DeserializeObject<User>(json);
+            Passage passage = JsonConvert.DeserializeObject<Passage>(json);
 
-            return _context.Update(user);
+            return _context.Update(passage);
         }
     }
 }

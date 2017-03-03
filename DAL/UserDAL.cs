@@ -4,7 +4,7 @@ using System.Data.Entity;
 
 namespace DAL
 {
-    public class UserDAL : IRepresentable<Model.User>
+    public class UserDAL : IEntities<Model.User>
     {
         #region .: Attributes :.
         private readonly APSystemEntities _context;
@@ -37,7 +37,7 @@ namespace DAL
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public Boolean Update(Model.User value)
+        public bool Update(Model.User value)
         {
             try
             {

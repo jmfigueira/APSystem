@@ -4,7 +4,7 @@ using System.Data.Entity;
 
 namespace DAL
 {
-    public class PassageDAL : IRepresentable<Model.Passage>
+    public class PassageDAL : IEntities<Model.Passage>
     {
         #region .: Attributes :.
         private readonly APSystemEntities _context;
